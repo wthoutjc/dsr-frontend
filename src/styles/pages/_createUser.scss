@@ -1,0 +1,22 @@
+.page {
+  background: $authBackground;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: $white;
+  border-radius: 4px;
+  box-shadow: 0 0 20px $blackShadow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}

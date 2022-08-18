@@ -1,0 +1,12 @@
+@import "./base/settings";
+@import "./base/base";
+
+// Components
+@import "./components/navbar";
+@import "./components/modal";
+@import "./components/card";
+
+// Pages
+@import "./pages/createUser";
+@import "./pages/homePage";
+@import "./pages/layout";

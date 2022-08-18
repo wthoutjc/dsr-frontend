@@ -1,0 +1,20 @@
+.navbar {
+  padding: 0.7em !important;
+  padding-top: 1em !important;
+  box-shadow: 0px 0px 5px 1px rgb(163, 163, 163);
+  margin-bottom: 1em;
+}
+.nav__container a {
+  margin-left: 1em;
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: $blueNav;
+  cursor: pointer;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.nav__container a:hover {
+  color: $blueHoverNav;
+}
