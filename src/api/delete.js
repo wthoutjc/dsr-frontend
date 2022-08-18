@@ -28,6 +28,8 @@ const deleteAPI = async (id, section, container = null) => {
       break;
   }
 
+  console.log(url);
+
   const settings = {
     method: "DELETE",
     headers: {

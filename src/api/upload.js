@@ -23,7 +23,9 @@ const uploadAPI = async (info, section, container = null) => {
     case "servicios":
       url = `${process.env.REACT_APP_API_PROD}/services`;
       if (container)
-        url = `${process.env.REACT_APP_API_PROD}/services/${container}/addContainer`;
+        url = `${process.env.REACT_APP_API_PROD}/services/${
+          container._id || container
+        }/addContainer`;
       break;
     default:
       break;

@@ -20,21 +20,28 @@ const ModalUpdate = ({ item }) => {
 
   const [currentImage, setCurrentImage] = useState(item.image);
 
-  const id = modal.id ? modal.id : item._id || item.id;
-
   const handleUpdate = async (data) => {
     // DELETE
-    const [success, deleteResponse] = await deleteAPI(id, modal.section, item);
-
+    let response;
+    const id = modal.id ? modal.id : item._id || item.id;
+    if (modal.id) {
+      console.log(item);
+      response = await deleteAPI(id, modal.section, item);
+    } else {
+      response = await deleteAPI(id, modal.section);
+    }
+    const [success, deleteResponse] = response;
     if (success) {
       // UPLOAD
-      const [success, uploadResponse] = await uploadAPI(
-        data,
-        modal.section,
-        id
-      );
+      if (modal.id) {
+        response = await uploadAPI(data, modal.section, id);
+      } else {
+        response = await uploadAPI(data, modal.section);
+      }
+
+      const [success, uploadResponse] = response;
+
       if (success) {
-        dispatch(setRequest(true));
         const payload = {
           open: true,
           title: "Success",
@@ -51,6 +58,7 @@ const ModalUpdate = ({ item }) => {
             section: null,
           })
         );
+        dispatch(setRequest(true));
       }
     } else {
       const payload = {

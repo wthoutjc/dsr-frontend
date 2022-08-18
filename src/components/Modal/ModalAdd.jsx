@@ -25,16 +25,13 @@ const ModalAdd = ({ item }) => {
       modal.section,
       item
     );
-
     if (success) dispatch(setRequest(true));
-
     const payload = {
       open: true,
       title: success ? "Éxito" : "Error",
       message: uploadResponse,
       type: success ? "success" : "danger",
     };
-
     dispatch(setNotification(payload));
     dispatch(
       setModal({
