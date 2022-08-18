@@ -22,7 +22,6 @@ const ModalDelete = ({ item, title }) => {
 
   const handleDelete = async () => {
     if (await deleteAPI(item._id, modal.section)) {
-      dispatch(setRequest(true));
       dispatch(
         setModal({
           open: false,
@@ -39,6 +38,7 @@ const ModalDelete = ({ item, title }) => {
           type: "success",
         })
       );
+      dispatch(setRequest(true));
     }
   };
 

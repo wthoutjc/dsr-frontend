@@ -80,7 +80,7 @@ const CardContainer = ({ title, data, section }) => {
 
 CardContainer.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired || PropTypes.string.isRequired,
   section: PropTypes.string.isRequired,
 };
 

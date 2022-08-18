@@ -33,83 +33,84 @@ const ServicioContainer = ({ title, data, section }) => {
           justifyContent: "space-between",
         }}
       >
-        {data.map((card, index) => {
-          const { name, containers } = card;
-          return (
-            <div className="card card-personalizada" key={index}>
-              <div className="card">
-                <div className="card-body">
-                  <button
-                    type="button"
-                    className="btn btn-outline-warning"
-                    onClick={() => handleModal("update", card)}
-                  >
-                    Actualizar
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger"
-                    onClick={() => handleModal("delete", card)}
-                  >
-                    Eliminar
-                  </button>
-                </div>
-                <div className="card-body">
-                  <div>
-                    <h1 className="card-servicios-title">{name}</h1>
-                    <div className="card-servicios-body">
-                      {containers.length > 0
-                        ? containers.map((container, index) => {
-                            return (
-                              <div key={index} className="card">
-                                <h3 className="card-servicios-item-title">
-                                  Title: {container.title}
-                                </h3>
-                                <p className="card-servicios-item-text">
-                                  Content: {container.content}
-                                </p>
-                                <p className="card-servicios-item-text">
-                                  Section: {container.section}
-                                </p>
-                                <p className="card-servicios-item-text">
-                                  Location: {container.location}
-                                </p>
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-warning"
-                                  onClick={() =>
-                                    handleModal("update", container, card._id)
-                                  }
-                                >
-                                  Actualizar subservicio
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-danger"
-                                  onClick={() =>
-                                    handleModal("delete", container, card._id)
-                                  }
-                                >
-                                  Eliminar Subservicio
-                                </button>
-                              </div>
-                            );
-                          })
-                        : "No hay servicios"}
+        {Array.isArray(data) &&
+          data?.map((card, index) => {
+            const { name, containers } = card;
+            return (
+              <div className="card card-personalizada" key={index}>
+                <div className="card">
+                  <div className="card-body">
+                    <button
+                      type="button"
+                      className="btn btn-outline-warning"
+                      onClick={() => handleModal("update", card)}
+                    >
+                      Actualizar
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline-danger"
+                      onClick={() => handleModal("delete", card)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                  <div className="card-body">
+                    <div>
+                      <h1 className="card-servicios-title">{name}</h1>
+                      <div className="card-servicios-body">
+                        {containers.length > 0
+                          ? containers.map((container, index) => {
+                              return (
+                                <div key={index} className="card">
+                                  <h3 className="card-servicios-item-title">
+                                    Title: {container.title}
+                                  </h3>
+                                  <p className="card-servicios-item-text">
+                                    Content: {container.content}
+                                  </p>
+                                  <p className="card-servicios-item-text">
+                                    Section: {container.section}
+                                  </p>
+                                  <p className="card-servicios-item-text">
+                                    Location: {container.location}
+                                  </p>
+                                  <button
+                                    type="button"
+                                    className="btn btn-outline-warning"
+                                    onClick={() =>
+                                      handleModal("update", container, card._id)
+                                    }
+                                  >
+                                    Actualizar subservicio
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn-outline-danger"
+                                    onClick={() =>
+                                      handleModal("delete", container, card._id)
+                                    }
+                                  >
+                                    Eliminar Subservicio
+                                  </button>
+                                </div>
+                              );
+                            })
+                          : "No hay servicios"}
+                      </div>
                     </div>
                   </div>
                 </div>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary"
+                  onClick={() => handleModal("add", card)}
+                >
+                  Agregar Sub-servicio
+                </button>
               </div>
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() => handleModal("add", card)}
-              >
-                Agregar Sub-servicio
-              </button>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </>
   );
