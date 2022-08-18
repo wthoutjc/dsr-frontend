@@ -29,7 +29,7 @@ const Router = () => {
       swal({
         title,
         message,
-        icon: type ? "success" : "success",
+        icon: type === "success" ? "success" : "error",
         button: type ? "OK" : "OK",
       });
       dispatch(

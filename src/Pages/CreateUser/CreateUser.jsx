@@ -3,11 +3,42 @@ import { Form, Container, Button } from "react-bootstrap";
 // React Hook Form
 import { useForm } from "react-hook-form";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../api";
+import { setNotification } from "../../reducers";
+
 const CreateUser = () => {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit } = useForm();
 
   const handleRegister = async (data) => {
-    console.log(data);
+    const response = await fetch(
+      `
+    ${process.env.REACT_APP_API_PROD}/users/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    if (response.status !== 200) {
+      return dispatch(
+        setNotification({
+          open: true,
+          title: "Error",
+          message: "No se pudo crear el usuario",
+          type: "error",
+        })
+      );
+    }
+    loginAction({
+      username: data.username,
+      password: data.password,
+    });
   };
 
   return (
