@@ -24,8 +24,8 @@ const ModalUpdate = ({ item }) => {
     // DELETE
     let response;
     const id = modal.id ? modal.id : item._id || item.id;
+
     if (modal.id) {
-      console.log(item);
       response = await deleteAPI(id, modal.section, item);
     } else {
       response = await deleteAPI(id, modal.section);

@@ -21,7 +21,11 @@ const ModalDelete = ({ item, title }) => {
   const { image, title: name } = item;
 
   const handleDelete = async () => {
-    if (await deleteAPI(item._id, modal.section)) {
+    const success = item._id
+      ? await deleteAPI(item._id, modal.section)
+      : await deleteAPI(modal.id, modal.section, item.id);
+
+    if (success) {
       dispatch(
         setModal({
           open: false,
