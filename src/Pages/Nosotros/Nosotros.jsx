@@ -21,17 +21,18 @@ const NosotrosPage = () => {
     fetcher
   );
 
-  const { data: contacts } = useSWR(
+  const { data: contacts, mutate: mutate2 } = useSWR(
     `${process.env.REACT_APP_API_PROD}/contact`,
     fetcher
   );
 
   useEffect(() => {
     if (request) {
-      mutate(`${process.env.REACT_APP_API_PROD}/home`, fetcher);
+      mutate(`${process.env.REACT_APP_API_PROD}/about`, fetcher);
+      mutate2(`${process.env.REACT_APP_API_PROD}/contact`, fetcher);
       dispatch(setRequest(false));
     }
-  }, [request, mutate, dispatch]);
+  }, [request, mutate, mutate2, dispatch]);
 
   if (!tarjetas) return <div>loading...</div>; // TODO: Acá sería bueno mostrar un mensaje de error más amigable
   if (!contacts) return <div>loading...</div>;

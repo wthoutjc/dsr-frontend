@@ -23,7 +23,7 @@ const ServiciosPage = () => {
 
   useEffect(() => {
     if (request) {
-      mutate(`${process.env.REACT_APP_API_PROD}/home`, fetcher);
+      mutate(`${process.env.REACT_APP_API_PROD}/services`, fetcher);
       dispatch(setRequest(false));
     }
   }, [request, mutate, dispatch]);
