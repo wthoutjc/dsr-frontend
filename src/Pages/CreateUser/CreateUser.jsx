@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 // Redux
 import { useDispatch } from "react-redux";
 import { loginAction } from "../../api";
-import { setNotification } from "../../reducers";
+import { login, setNotification } from "../../reducers";
 
 const CreateUser = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const CreateUser = () => {
         body: JSON.stringify(data),
       }
     );
-    if (response.status !== 200) {
+    if (response.status !== 201) {
       return dispatch(
         setNotification({
           open: true,
@@ -35,10 +35,10 @@ const CreateUser = () => {
         })
       );
     }
-    loginAction({
-      username: data.username,
-      password: data.password,
-    });
+    const success = await loginAction(data);
+    if (success) {
+      return dispatch(login());
+    }
   };
 
   return (
