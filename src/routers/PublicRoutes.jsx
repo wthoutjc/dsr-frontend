@@ -6,9 +6,9 @@ import { UserLogin, CreateUser } from "../Pages";
 const PublicRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<UserLogin />} />
+      <Route path="/login" element={<UserLogin />} />
       <Route path="/create-user" element={<CreateUser />} />
-      <Route path="/*" element={<Navigate to="/" />} />
+      <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );
 };
