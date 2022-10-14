@@ -8,6 +8,7 @@ import { login, setNotification } from "../reducers";
 
 // Components
 import { PublicRoutes, PrivateRoutes } from "./";
+import { Loader } from "../components/Loader";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -43,9 +44,7 @@ const Router = () => {
     }
   }, [dispatch, open, type, message, title]);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
+  if (loading) return <Loader />;
 
   return (
     <BrowserRouter>

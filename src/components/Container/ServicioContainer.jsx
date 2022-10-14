@@ -23,13 +23,18 @@ const ServicioContainer = ({ title, data, section }) => {
 
   return (
     <>
-      <div className="card-servicios-header">
-        <Button onClick={() => handleModal("add")}>Agregar Servicio</Button>
-      </div>
+      <Button
+        onClick={() => handleModal("add")}
+        style={{
+          marginBottom: "1rem",
+        }}
+      >
+        Agregar Servicio
+      </Button>
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
+          flexWrap: "nowrap",
           justifyContent: "space-between",
         }}
       >
@@ -37,67 +42,81 @@ const ServicioContainer = ({ title, data, section }) => {
           data?.map((card, index) => {
             const { name, containers } = card;
             return (
-              <div className="card card-personalizada" key={index}>
-                <div className="card">
-                  <div className="card-body">
-                    <button
-                      type="button"
-                      className="btn btn-outline-warning"
-                      onClick={() => handleModal("update", card)}
-                    >
-                      Actualizar
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger"
-                      onClick={() => handleModal("delete", card)}
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                  <div className="card-body">
+              <div
+                className="card"
+                key={index}
+                style={{
+                  margin: "1rem",
+                  maxHeight: "600px",
+                  overflow: "auto",
+                }}
+              >
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="btn btn-outline-warning"
+                    onClick={() => handleModal("update", card)}
+                  >
+                    Actualizar
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger"
+                    onClick={() => handleModal("delete", card)}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+                <div className="card-body">
+                  <div>
+                    <h1>{name}</h1>
                     <div>
-                      <h1 className="card-servicios-title">{name}</h1>
-                      <div className="card-servicios-body">
-                        {containers.length > 0
-                          ? containers.map((container, index) => {
-                              return (
-                                <div key={index} className="card">
-                                  <h3 className="card-servicios-item-title">
-                                    Title: {container.title}
-                                  </h3>
-                                  <p className="card-servicios-item-text">
-                                    Content: {container.content}
-                                  </p>
-                                  <p className="card-servicios-item-text">
-                                    Section: {container.section}
-                                  </p>
-                                  <p className="card-servicios-item-text">
-                                    Location: {container.location}
-                                  </p>
-                                  <button
-                                    type="button"
-                                    className="btn btn-outline-warning"
-                                    onClick={() =>
-                                      handleModal("update", container, card._id)
-                                    }
-                                  >
-                                    Actualizar subservicio
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn btn-outline-danger"
-                                    onClick={() =>
-                                      handleModal("delete", container, card._id)
-                                    }
-                                  >
-                                    Eliminar Subservicio
-                                  </button>
-                                </div>
-                              );
-                            })
-                          : "No hay servicios"}
-                      </div>
+                      {containers.length > 0
+                        ? containers.map((container, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className="card"
+                                style={{
+                                  filter:
+                                    "drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.55))",
+                                }}
+                              >
+                                <h3>Title: {container.title}</h3>
+                                <p>Content: {container.content}</p>
+                                <p>Section: {container.section}</p>
+                                <p>Location: {container.location}</p>
+                                <button
+                                  type="button"
+                                  className="btn btn-outline-warning"
+                                  style={{
+                                    marginBottom: "1rem",
+                                  }}
+                                  onClick={() =>
+                                    handleModal("update", container, card._id)
+                                  }
+                                >
+                                  Actualizar subservicio
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-outline-danger"
+                                  onClick={() =>
+                                    handleModal("delete", container, card._id)
+                                  }
+                                >
+                                  Eliminar Subservicio
+                                </button>
+                              </div>
+                            );
+                          })
+                        : "No hay servicios"}
                     </div>
                   </div>
                 </div>

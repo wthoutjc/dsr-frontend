@@ -22,7 +22,12 @@ const CardContainer = ({ title, data, section }) => {
 
   return (
     <div className="card card-personalizada">
-      <div className="card-body">
+      <div
+        className="card-body"
+        style={{
+          padding: 0,
+        }}
+      >
         <Row>
           <Col>
             <button
@@ -41,36 +46,43 @@ const CardContainer = ({ title, data, section }) => {
         {Array.isArray(data) &&
           data?.map((item, index) => (
             <div className="card" key={index}>
-              <div className="card-body">
-                <Row>
-                  {[
-                    {
-                      title: "Ver",
-                      type: "view",
-                      className: "btn-outline-primary",
-                    },
-                    {
-                      title: "Actualizar",
-                      type: "update",
-                      className: "btn-outline-warning",
-                    },
-                    {
-                      title: "Borrar",
-                      type: "delete",
-                      className: "btn-outline-danger",
-                    },
-                  ].map((col, index) => (
-                    <Col key={index}>
-                      <button
-                        className={`btn ${col.className}`}
-                        onClick={() => handleModal(col.type, item)}
-                      >
-                        {col.title}
-                      </button>
-                    </Col>
-                  ))}
-                </Row>
-              </div>
+              <Row
+                style={{
+                  margin: "0",
+                  flexWrap: "nowrap",
+                  overflowX: "auto",
+                }}
+              >
+                {[
+                  {
+                    title: "Ver",
+                    type: "view",
+                    className: "btn-outline-primary",
+                  },
+                  {
+                    title: "Actualizar",
+                    type: "update",
+                    className: "btn-outline-warning",
+                  },
+                  {
+                    title: "Borrar",
+                    type: "delete",
+                    className: "btn-outline-danger",
+                  },
+                ].map((col, index) => (
+                  <Col key={index}>
+                    <button
+                      className={`btn ${col.className}`}
+                      style={{
+                        marginBottom: "10px",
+                      }}
+                      onClick={() => handleModal(col.type, item)}
+                    >
+                      {col.title}
+                    </button>
+                  </Col>
+                ))}
+              </Row>
             </div>
           ))}
       </div>

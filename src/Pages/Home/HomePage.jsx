@@ -9,6 +9,7 @@ import { LayoutPage } from "../Layout";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setRequest } from "../../reducers";
+import { Loader } from "../../components/Loader";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -35,21 +36,29 @@ const HomePage = () => {
   }, [request, mutate, dispatch]);
 
   if (error) return <div>failed to load</div>; // TODO: Acá sería bueno mostrar un mensaje de error más amigable
-  if (!data) return <div>loading...</div>;
+  if (!data) return <Loader />;
 
   return (
     <LayoutPage>
       <h1 className="title">Home</h1>
-      <Container className="container-cards">
+      <Container fluid>
         <Row xs={1} md={1} lg={3}>
           <Col>
-            <CardContainer section={"home"} title={"Hero"} data={hero || []} />
+            <CardContainer section={"hero"} title={"Hero"} data={hero || []} />
           </Col>
           <Col>
-            <CardContainer section={"home"} title={"Clientes"} data={clients || []} />
+            <CardContainer
+              section={"clients"}
+              title={"Clientes"}
+              data={clients || []}
+            />
           </Col>
           <Col>
-            <CardContainer section={"home"} title={"Aliados"} data={allies || []} />
+            <CardContainer
+              section={"allies"}
+              title={"Aliados"}
+              data={allies || []}
+            />
           </Col>
         </Row>
       </Container>

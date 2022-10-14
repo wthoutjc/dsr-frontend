@@ -19,7 +19,7 @@ const deleteAPI = async (id, section, container = null) => {
     case "contacto":
       url = `${process.env.REACT_APP_API_PROD}/contact/${id}`;
       break;
-    case "servicios":
+    case "services":
       url = `${process.env.REACT_APP_API_PROD}/services/${id}`;
       if (container)
         url = `${process.env.REACT_APP_API_PROD}/services/${id}/${container.id}`;
@@ -27,8 +27,6 @@ const deleteAPI = async (id, section, container = null) => {
     default:
       break;
   }
-
-  console.log(url);
 
   const settings = {
     method: "DELETE",

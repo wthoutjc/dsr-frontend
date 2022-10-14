@@ -1,4 +1,5 @@
 import { Form, Container, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // React Hook Form
 import { useForm } from "react-hook-form";
@@ -90,6 +91,8 @@ const CreateUser = () => {
           </Button>
 
           <br></br>
+
+          <Link to="/login">Iniciar sesión</Link>
         </Form>
       </Container>
     </div>

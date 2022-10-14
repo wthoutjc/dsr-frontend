@@ -12,6 +12,11 @@ import { useForm } from "react-hook-form";
 // API
 import { uploadAPI } from "../../api";
 
+const SectionADAPTER = {
+  clientes: "clients",
+  aliados: "allies",
+};
+
 const ModalAdd = ({ item }) => {
   const dispatch = useDispatch();
 
@@ -21,10 +26,11 @@ const ModalAdd = ({ item }) => {
 
   const handleUpload = async (data) => {
     const [success, uploadResponse] = await uploadAPI(
-      data,
+      modal.section === "services" ? data : { ...data, section: modal.section },
       modal.section,
       item
     );
+
     if (success) dispatch(setRequest(true));
     const payload = {
       open: true,
@@ -33,12 +39,13 @@ const ModalAdd = ({ item }) => {
       type: success ? "success" : "danger",
     };
     dispatch(setNotification(payload));
+
     dispatch(
       setModal({
         open: false,
         title: "",
         type: null,
-        section: null,
+        section: SectionADAPTER[modal.section],
       })
     );
   };
@@ -48,7 +55,7 @@ const ModalAdd = ({ item }) => {
       <div className="container mt-5">
         <div className="card p-3">
           <form onSubmit={handleSubmit(handleUpload)}>
-            {modal.section === "servicios" && !item && (
+            {modal.section === "services" && !item && (
               <>
                 <div className="row">
                   <h5>Nombre del servicio </h5>
@@ -101,30 +108,9 @@ const ModalAdd = ({ item }) => {
                 <br />
               </>
             )}
-            {(modal.section === "home" ||
-              modal.section === "tarjetas" ||
-              modal.section === "contacto" ||
-              item) && (
-              <>
-                <div className="row">
-                  <Form.Label>
-                    <h5> Agregue la sección</h5>
-                  </Form.Label>
-                  <Form.Control
-                    name="title"
-                    type="text"
-                    className="form-control"
-                    placeholder="Ingrese la sección"
-                    autoComplete="section"
-                    {...register("section", {
-                      required: "Sección requerido",
-                    })}
-                  />
-                </div>
-                <br />
-              </>
-            )}
-            {(modal.section === "home" ||
+            {(modal.section === "hero" ||
+              modal.section === "allies" ||
+              modal.section === "clients" ||
               modal.section === "tarjetas" ||
               item) && (
               <>

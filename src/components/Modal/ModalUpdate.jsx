@@ -80,7 +80,7 @@ const ModalUpdate = ({ item }) => {
     }
   };
 
-  if (modal.section === "servicios" && !modal.item.id) {
+  if (modal.section === "service" && !modal.item.id) {
     return (
       <div className="container mt-5">
         <div className="card p-3">

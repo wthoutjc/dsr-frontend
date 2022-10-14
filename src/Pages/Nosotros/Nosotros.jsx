@@ -9,6 +9,7 @@ import { CardContainer } from "../../components/Container";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setRequest } from "../../reducers";
+import { Loader } from "../../components/Loader";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -34,39 +35,40 @@ const NosotrosPage = () => {
     }
   }, [request, mutate, mutate2, dispatch]);
 
-  if (!tarjetas) return <div>loading...</div>; // TODO: Acá sería bueno mostrar un mensaje de error más amigable
-  if (!contacts) return <div>loading...</div>;
+  useEffect(() => {
+    console.log(tarjetas);
+    console.log(contacts);
+  }, [tarjetas, contacts]);
+
+  if (!tarjetas) return <Loader />;
+  if (!contacts) return <Loader />;
 
   return (
     <LayoutPage>
       <h1 className="title">Nosotros</h1>
-      <p className="text">
-        lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
-        dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit
-        amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </p>
-      <Container className="container-cards">
+      <Container fluid>
         <Row xs={1} md={1} lg={2}>
-          <Col>
-            <CardContainer
-              section={"tarjetas"}
-              title={"Tarjetas"}
-              data={tarjetas || []}
-            />
+          <Col
+            style={{
+              position: "relative",
+            }}
+          >
+            {Array.isArray(tarjetas) && (
+              <CardContainer
+                section={"tarjetas"}
+                title={"Tarjetas"}
+                data={tarjetas || []}
+              />
+            )}
           </Col>
           <Col>
-            <CardContainer
-              section={"contacto"}
-              title={"Contacto"}
-              data={contacts || []}
-            />
+            {Array.isArray(contacts) && (
+              <CardContainer
+                section={"contacto"}
+                title={"Contacto"}
+                data={contacts || []}
+              />
+            )}
           </Col>
         </Row>
       </Container>

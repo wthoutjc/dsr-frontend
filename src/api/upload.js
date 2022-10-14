@@ -4,8 +4,13 @@ const uploadAPI = async (info, section, container = null) => {
   const { section: _section, image } = info;
   let url;
 
+  console.log(info);
+
   switch (section) {
-    case "home":
+    case "allies":
+      url = `${process.env.REACT_APP_API_PROD}/home/upload`;
+      break;
+    case "clients":
       url = `${process.env.REACT_APP_API_PROD}/home/upload`;
       break;
     case "hero":
@@ -20,7 +25,7 @@ const uploadAPI = async (info, section, container = null) => {
     case "contacto":
       url = `${process.env.REACT_APP_API_PROD}/contact`;
       break;
-    case "servicios":
+    case "services":
       url = `${process.env.REACT_APP_API_PROD}/services`;
       if (container)
         url = `${process.env.REACT_APP_API_PROD}/services/${

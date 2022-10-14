@@ -15,7 +15,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const ServiciosPage = () => {
   const dispatch = useDispatch();
   const { request } = useSelector((state) => state.ui);
-  
+
   const { data, error, mutate } = useSWR(
     `${process.env.REACT_APP_API_PROD}/services`,
     fetcher
@@ -34,26 +34,15 @@ const ServiciosPage = () => {
     <>
       <LayoutPage>
         <h1 className="title">Servicios</h1>
-        <p className="text">
-          lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit.
-        </p>
         <Container className="container-cards">
           <div>
-            <ServicioContainer
-              section={"servicios"}
-              title={"Servicios"}
-              data={data || []}
-            />
+            {Array.isArray(data) && (
+              <ServicioContainer
+                section={"services"}
+                title={"Servicios"}
+                data={data || []}
+              />
+            )}
           </div>
         </Container>
       </LayoutPage>
