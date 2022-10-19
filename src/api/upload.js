@@ -4,8 +4,6 @@ const uploadAPI = async (info, section, container = null) => {
   const { section: _section, image } = info;
   let url;
 
-  console.log(info);
-
   switch (section) {
     case "allies":
       url = `${process.env.REACT_APP_API_PROD}/home/upload`;

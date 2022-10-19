@@ -16,7 +16,11 @@ const ModalUpdate = ({ item }) => {
   const dispatch = useDispatch();
   const { modal } = useSelector((state) => state.ui);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      section: item.section,
+    },
+  });
 
   const [currentImage, setCurrentImage] = useState(item.image);
 
@@ -163,23 +167,7 @@ const ModalUpdate = ({ item }) => {
                   />
                 </div>
               )}
-              {item.section && (
-                <div className="row">
-                  <Form.Label>
-                    <h5> Modifique la sección</h5>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    className="form-control"
-                    placeholder="Ingrese la sección"
-                    autoComplete="sectiom"
-                    defaultValue={item.section}
-                    {...register("section", {
-                      required: "Sección requerido",
-                    })}
-                  />
-                </div>
-              )}
+
               {item.image && (
                 <>
                   <div className="row">
@@ -191,9 +179,7 @@ const ModalUpdate = ({ item }) => {
                         id="fileinput"
                         className="form-control"
                         type="file"
-                        {...register("image", {
-                          required: "Imagen requerida",
-                        })}
+                        {...register("image")}
                         onChange={(e) => {
                           setCurrentImage(
                             URL.createObjectURL(e.target.files[0])

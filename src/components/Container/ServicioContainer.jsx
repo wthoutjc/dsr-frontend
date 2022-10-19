@@ -48,6 +48,7 @@ const ServicioContainer = ({ title, data, section }) => {
                 style={{
                   margin: "1rem",
                   maxHeight: "600px",
+                  width: "360px",
                   overflow: "auto",
                 }}
               >

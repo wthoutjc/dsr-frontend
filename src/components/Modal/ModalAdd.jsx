@@ -123,9 +123,7 @@ const ModalAdd = ({ item }) => {
                       id="fileinput"
                       className="form-control"
                       type="file"
-                      {...register("image", {
-                        required: "Imagen requerida",
-                      })}
+                      {...register("image")}
                       onChange={(e) => {
                         setCurrentImage(URL.createObjectURL(e.target.files[0]));
                       }}

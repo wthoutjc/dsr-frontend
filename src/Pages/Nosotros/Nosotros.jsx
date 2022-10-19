@@ -35,11 +35,6 @@ const NosotrosPage = () => {
     }
   }, [request, mutate, mutate2, dispatch]);
 
-  useEffect(() => {
-    console.log(tarjetas);
-    console.log(contacts);
-  }, [tarjetas, contacts]);
-
   if (!tarjetas) return <Loader />;
   if (!contacts) return <Loader />;
 

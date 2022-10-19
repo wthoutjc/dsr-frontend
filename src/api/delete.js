@@ -7,6 +7,12 @@ const deleteAPI = async (id, section, container = null) => {
     case "home":
       url = `${process.env.REACT_APP_API_PROD}/home/${id}`;
       break;
+    case "clients":
+      url = `${process.env.REACT_APP_API_PROD}/home/${id}`;
+      break;
+    case "allies":
+      url = `${process.env.REACT_APP_API_PROD}/home/${id}`;
+      break;
     case "hero":
       url = `${process.env.REACT_APP_API_PROD}/home/${id}`;
       break;
