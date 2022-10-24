@@ -34,7 +34,7 @@ const ServicioContainer = ({ title, data, section }) => {
       <div
         style={{
           display: "flex",
-          flexWrap: "nowrap",
+          flexWrap: "wrap",
           justifyContent: "space-between",
         }}
       >
